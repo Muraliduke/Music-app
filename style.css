@@ -1,0 +1,33 @@
+th{
+    font-weight: bold
+}
+
+.help-block{
+    color: red;
+}
+
+
+
+.form-group span{
+    outline: none;
+}
+
+.rel,.rel1,.rel2,.rel3{
+    position: relative
+}
+.abs{
+   position: absolute;
+    right: 10%;
+    top: 17%;
+    color: darkorange
+}
+.right{
+       position: absolute;
+        top: 7%;
+ 
+    right: 10%;
+}
+tr span{
+        display: inline-flex;
+    outline: none;
+}
