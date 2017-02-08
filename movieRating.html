@@ -1,0 +1,102 @@
+
+
+<div class="col-md-8 col-md-offset-2">
+
+<uib-tabset active="activeJustified" justified="true">
+    
+    <uib-tab index="0" heading="Songlist">
+        
+        <div class="col-md-12">
+    
+        <table class="table table-bordered">
+        
+        <thead>
+            
+            <tr>
+                <th class="rel" >Song Name  <i class="fa fa-sort-asc right" ng-click='sort("SongName",true)' aria-hidden="true"></i>  <i class="fa fa-sort-desc abs" aria-hidden="true" ng-click='sort("SongName",false)'></i><input type="text" ng-model="a.song"></th> 
+                
+                <th  class="rel1">Artist  <i class="fa fa-sort-asc right" aria-hidden="true" ng-click='sort("Artist",true)'></i> <i class="fa fa-sort-desc abs" aria-hidden="true" ng-click='sort("Artist",false)'></i> <input type="text" ng-model="a.Artist"></th>
+                
+                <th class="rel2" >Album   <i class="fa fa-sort-asc right" aria-hidden="true" ng-click='sort("Album",true)'></i> <i class="fa fa-sort-desc abs" aria-hidden="true" ng-click='sort("Album",false)'></i><input type="text" ng-model="a.Album"> </th>
+                
+                <th  class="rel3">Rating  <i class="fa fa-sort-asc right" aria-hidden="true" ng-click='sort("star",true)'></i> <i class="fa fa-sort-desc abs" aria-hidden="true" ng-click='sort("star",false)'></i> 
+                    
+                    
+                <span uib-rating ng-model="initial" max="max" read-only="isReadonly" ng-change="func()" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
+                
+                </th>
+            
+            </tr> 
+        </thead>
+        
+            <tbody>
+                 
+                <tr ng-repeat="data in contents |filter:{SongName: a.song, Artist: a.Artist,Album:a.Album } |filter:initial | orderBy:propertyName:reverse track by $index">
+                        <td>{{data.SongName}}</td> 
+                        <td>{{data.Artist}}</td>
+                        <td>{{data.Album}}</td>
+                        <td><span class="glyphicon glyphicon-star" ng-repeat="a in bb(data.star) track by $index"></span></td>
+            
+                </tr> 
+            
+            </tbody>
+        
+        </table>
+    
+        </div>
+    
+    
+    </uib-tab>
+    <uib-tab index="1" heading="Add Song">
+    
+    
+    <form name="form.myform"  novalidate>
+        
+        <div class="form-group">
+        
+            <label for="song">Song Name :</label>
+            <input type="text" name="SongName" id="song" name="song" class="form-control" ng-model="user.SongName" placeholder="Song Name" required>
+            <p ng-show="form.myform.SongName.$invalid && !form.myform.SongName.$pristine" class="help-block">Song name is required.</p>
+        </div>
+        
+         <div class="form-group">
+        
+            <label for="Artist">Artist :</label>
+            <input type="text" name="Artist" id="Artist" class="form-control" ng-model="user.Artist" placeholder="Artist" required>
+            <p ng-show="form.myform.Artist.$invalid && !form.myform.Artist.$pristine" class="help-block">Artist name is required.</p>
+        </div>
+        
+         <div class="form-group">
+        
+            <label for="Album">Album Name :</label>
+            <input type="text" id="Album" name="Album" class="form-control" ng-model="user.Album" placeholder="Album Name" required>
+              <p ng-show="form.myform.Album.$invalid && !form.myform.Album.$pristine" class="help-block">Album name is required.</p>
+        </div>
+        
+         <div class="form-group">
+        
+            <label >Rating :</label>
+            
+                 <span uib-rating ng-model="rate" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
+                
+                
+              
+            
+        </div>
+        
+      <!-- <pre>{{myform|json}}</pre>-->
+        
+        <button type="submit" class="btn btn-success" ng-disabled="!form.myform.$valid" ng-click="save()">Save</button>
+        <button type="submit" class="btn btn-danger" ng-click="cancel()">Cancel</button>
+    
+    </form>
+        
+        
+    
+    
+    </uib-tab>
+    
+</uib-tabset>
+
+
+</div>
